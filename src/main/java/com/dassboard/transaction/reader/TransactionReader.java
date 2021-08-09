@@ -37,6 +37,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;     
 import javax.swing.filechooser.FileSystemView;
 import com.dassboard.object.Operation;
+import java.awt.Frame;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -142,8 +143,7 @@ public class TransactionReader extends JFrame {
         getContentPane().add(progressBar, BorderLayout.SOUTH);
         getContentPane().add(new JScrollPane(displayData), BorderLayout.CENTER);
 
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setUndecorated(true);
+        this.setExtendedState(Frame.MAXIMIZED_BOTH);
         this.setVisible(true);
 
         // Adding Listeners
