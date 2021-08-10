@@ -145,6 +145,22 @@ public class TransactionReader extends JFrame {
 
         this.setExtendedState(Frame.MAXIMIZED_BOTH);
         this.setVisible(true);
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                
+                System.out.println("Cerrando el socket........");
+                try {
+                    in.close();
+                    out.close();
+                    clientSocket.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(TransactionReader.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
 
         // Adding Listeners
         open.addActionListener(new ActionListener() {
@@ -193,6 +209,7 @@ public class TransactionReader extends JFrame {
 
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(null, "Error Leyendo el archivo");
+                        
                     } catch (InterruptedException ex) {
                         Logger.getLogger(TransactionReader.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -293,7 +310,6 @@ public class TransactionReader extends JFrame {
         in.close();
         out.close();
         clientSocket.close();
-        
         JOptionPane.showMessageDialog(null, "Socket Desconectado", "Desconectado!", JOptionPane.ERROR_MESSAGE);   
         displayData.setText("Desconectado");
         
